@@ -1,0 +1,23 @@
+{
+  "name": "react-native-desktop",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "metro": "0.57",
+    "metro-config": "0.57",
+    "react": "16.12.0",
+    "react-native": "github:microsoft/react-native#v0.60.0-microsoft.25"    
+  },
+  "optionalDependencies": {
+    "react-native-windows": "0.60.0-vnext.101"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/runtime": "^7.7.7",
+    "react-devtools-core": "^3.6.0",
+    "react-test-renderer": "16.12.0"
+  }
+}
