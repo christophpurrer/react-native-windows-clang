@@ -107,6 +107,8 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 		DispatchMessage(&msg);
 	}
 
+	// This works around a cpp/winrt bug with composable/aggregable types tracked by Microsoft via 22116519
+	reactRootView.as<::IUnknown>()->Release();
 	return 0;
 }
 

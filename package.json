@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "postinstall": "\"C:\\Program Files\\Git\\usr\\bin\\patch.exe\" -i ReactRootView2.cpp.patch node_modules\\react-native-windows\\Microsoft.ReactNative\\ReactRootView2.cpp",
     "start": "react-native start"
   },
   "dependencies": {

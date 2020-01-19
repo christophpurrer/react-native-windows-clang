@@ -9,4 +9,4 @@
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.UI.Xaml.h>
 
-#include <winrt/react.uwp.h>
+#include <winrt/Microsoft.ReactNative.h>
