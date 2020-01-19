@@ -11,45 +11,45 @@ using namespace react::uwp;
 namespace winrt::UWPApp::implementation
 {
 #ifdef BUNDLE  
-    const wchar_t* JSFILENAME = L"index.windows";
+	const wchar_t* JSFILENAME = L"index.windows";
 #else  
-    const wchar_t* JSFILENAME = L"index";
+	const wchar_t* JSFILENAME = L"index";
 #endif
-    const wchar_t* JSCOMPONENTNAME = L"rnw";
-    
-    ReactNativeWinRT::ReactNativeWinRT()
-    {
-        InitializeComponent();
-        LoadReact();
-    }
+	const wchar_t* JSCOMPONENTNAME = L"App";
 
-    void ReactNativeWinRT::LoadReact()
-    {
-        react::uwp::ReactControl RootElement;
-        RootGrid().Children().Append(RootElement);
+	ReactNativeWinRT::ReactNativeWinRT()
+	{
+		InitializeComponent();
+		LoadReact();
+	}
 
-        InstanceSettings settings;
+	void ReactNativeWinRT::LoadReact()
+	{
+		react::uwp::ReactControl RootElement;
+		RootGrid().Children().Append(RootElement);
+
+		InstanceSettings settings;
 
 #ifdef BUNDLE
-        settings.UseLiveReload = false;
-        settings.UseWebDebugger = false;
+		settings.UseLiveReload = false;
+		settings.UseWebDebugger = false;
 #else    
-        settings.UseLiveReload = true;
-        settings.UseWebDebugger = true;
+		settings.UseLiveReload = true;
+		settings.UseWebDebugger = true;
 #endif
 
-        auto instance = Instance::Create(winrt::hstring(JSFILENAME));
-        instance.Start(settings);
+		auto instance = Instance::Create(winrt::hstring(JSFILENAME));
+		instance.Start(settings);
 
-        RootElement.Instance(instance);
+		RootElement.Instance(instance);
 
-        const wchar_t* initialProps = L"{ "
-            L"\"one\":\"1\""
-            L", \"two\":\"2\""
-            L"}";
+		const wchar_t* initialProps = L"{ "
+			L"\"one\":\"1\""
+			L", \"two\":\"2\""
+			L"}";
 
-        RootElement.InitialProps(winrt::hstring(initialProps));
-        RootElement.JsComponentName(JSCOMPONENTNAME);
-        RootElement.StartRender();
-    }
+		RootElement.InitialProps(winrt::hstring(initialProps));
+		RootElement.JsComponentName(JSCOMPONENTNAME);
+		RootElement.StartRender();
+	}
 }
