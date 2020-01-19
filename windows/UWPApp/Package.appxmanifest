@@ -8,7 +8,7 @@
   <Properties>
     <DisplayName>UWPApp</DisplayName>
     <PublisherDisplayName>chpurrer</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets\dummy.png</Logo>
   </Properties>
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
@@ -19,10 +19,10 @@
   <Applications>
     <Application Id="App" Executable="dummy.exe" EntryPoint="UWPApp.App">
       <uap:VisualElements DisplayName="UWPApp" Description="Project for a single page C++/WinRT Universal Windows Platform (UWP) app with no predefined layout"
-        Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+        Square150x150Logo="Assets\dummy.png" Square44x44Logo="Assets\dummy.png" BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\dummy.png">
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\dummy.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
