@@ -42,4 +42,4 @@ See [WinRT documentation](https://docs.microsoft.com/en-us/windows/uwp/cpp-and-w
 ## Some words of caution
 - Xaml Islands and therefore this project require [Windows 10 1903](https://en.wikipedia.org/wiki/Windows_10_version_history)
 - Once [WinUI 3.0](https://docs.microsoft.com/en-us/uwp/toolkits/winui3) is ready, you should be able to support Windows 10 1703, as Xaml Islands gets extracted out of the Windows 10 SDK
-- VCRT Forwarding just *'forwards to runtime components of Visual C++ libraries which are required to run Visual C++ applications'*. Ensure that. See [https://github.com/Microsoft/vcrt-forwarders](ttps://github.com/Microsoft/vcrt-forwarders) and [Visual C++ Redistributable Packages](https://aka.ms/AA4pp63)
+- VCRT Forwarding just *'forwards to runtime components of Visual C++ libraries which are required to run Visual C++ applications'*. Ensure that. See [https://github.com/Microsoft/vcrt-forwarders](https://github.com/Microsoft/vcrt-forwarders) and [Visual C++ Redistributable Packages](https://aka.ms/AA4pp63)
