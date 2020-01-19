@@ -20,14 +20,6 @@ namespace winrt::UWPApp::implementation
 	ReactNativeWinRT::ReactNativeWinRT()
 	{
 		InitializeComponent();
-		LoadReact();
-	}
-
-	void ReactNativeWinRT::LoadReact()
-	{
-		react::uwp::ReactControl RootElement;
-		RootGrid().Children().Append(RootElement);
-
 		InstanceSettings settings;
 
 #ifdef BUNDLE
@@ -41,15 +33,19 @@ namespace winrt::UWPApp::implementation
 		auto instance = Instance::Create(winrt::hstring(JSFILENAME));
 		instance.Start(settings);
 
-		RootElement.Instance(instance);
+		reactRootView_.Instance(instance);
 
 		const wchar_t* initialProps = L"{ "
 			L"\"one\":\"1\""
 			L", \"two\":\"2\""
 			L"}";
 
-		RootElement.InitialProps(winrt::hstring(initialProps));
-		RootElement.JsComponentName(JSCOMPONENTNAME);
-		RootElement.StartRender();
+		reactRootView_.InitialProps(winrt::hstring(initialProps));
+		reactRootView_.JsComponentName(JSCOMPONENTNAME);
+		reactRootView_.StartRender();
+	}
+
+	Windows::UI::Xaml::Controls::Grid ReactNativeWinRT::ReactRootView() {
+		return reactRootView_.as<Windows::UI::Xaml::Controls::Grid>();
 	}
 }

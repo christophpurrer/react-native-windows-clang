@@ -84,11 +84,12 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	xamlContainer.Background(Windows::UI::Xaml::Media::SolidColorBrush{ Windows::UI::Colors::LightGray() });
 
 	UWPApp::ReactNativeWinRT rn;
-	rn.VerticalAlignment(Windows::UI::Xaml::VerticalAlignment::Center);
-	rn.HorizontalAlignment(Windows::UI::Xaml::HorizontalAlignment::Center);
-	rn.Width(width);
-	rn.Height(height);
-	xamlContainer.Children().Append(rn);
+	auto reactRootView = rn.ReactRootView();
+	reactRootView.VerticalAlignment(Windows::UI::Xaml::VerticalAlignment::Center);
+	reactRootView.HorizontalAlignment(Windows::UI::Xaml::HorizontalAlignment::Center);
+	reactRootView.Width(width);
+	reactRootView.Height(height);
+	xamlContainer.Children().Append(reactRootView);
 
 	xamlContainer.UpdateLayout();
 	desktopSource.Content(xamlContainer);
