@@ -27,6 +27,8 @@ yarn start
 
 4.) Run **win32** project
 
+![Running react-native-windows inside a win32 window](doc/react-native-windows-win32.png)
+
 ## How this project was setup
 This sneaky examples leverage a set of technologies
 - [Xaml Islands](https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/using-the-xaml-hosting-api) >> [Sample](https://github.com/marb2000/XamlIslands/tree/master/1903_Samples/CppWinRT_Win32_SimpleApp/Win32DesktopApp)
