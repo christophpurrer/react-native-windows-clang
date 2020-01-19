@@ -1,3 +1,9 @@
+/**
+ * Metro configuration for React Native
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
 if (require('os').platform() === 'win32') {
   const fs = require('fs');
   const path = require('path');

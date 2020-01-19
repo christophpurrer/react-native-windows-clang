@@ -1,0 +1,8 @@
+namespace UWPApp
+{
+    [default_interface]
+    runtimeclass ReactNativeWinRT : Windows.UI.Xaml.Controls.UserControl
+    {
+        ReactNativeWinRT();
+    }
+}

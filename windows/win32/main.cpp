@@ -1,19 +1,10 @@
-#include <windows.h>
-#undef GetCurrentTime // https://github.com/microsoft/xlang/issues/552
-#include <stdlib.h>
-#include <string.h>
-
-#include <winrt/Windows.System.h>
-#include <winrt/Windows.UI.Xaml.Hosting.h>
-#include <windows.ui.xaml.hosting.desktopwindowxamlsource.h>
-#include <winrt/Windows.UI.Xaml.Controls.h>
-#include <winrt/Windows.UI.Xaml.Media.h>
-#include <winrt/Windows.Foundation.Collections.h>
+#include "pch.h"
 
 using namespace winrt;
 using namespace Windows::UI;
 using namespace Windows::UI::Composition;
 using namespace Windows::UI::Xaml::Hosting;
+using namespace Windows::Foundation;
 using namespace Windows::Foundation::Numerics;
 
 LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
@@ -92,13 +83,13 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	Windows::UI::Xaml::Controls::StackPanel xamlContainer;
 	xamlContainer.Background(Windows::UI::Xaml::Media::SolidColorBrush{ Windows::UI::Colors::LightGray() });
 
-	Windows::UI::Xaml::Controls::TextBlock tb;
-	tb.Text(L"Hello World from Xaml Islands!");
-	tb.VerticalAlignment(Windows::UI::Xaml::VerticalAlignment::Center);
-	tb.HorizontalAlignment(Windows::UI::Xaml::HorizontalAlignment::Center);
-	tb.FontSize(48);
+	UWPApp::ReactNativeWinRT rn;
+	rn.VerticalAlignment(Windows::UI::Xaml::VerticalAlignment::Center);
+	rn.HorizontalAlignment(Windows::UI::Xaml::HorizontalAlignment::Center);
+	rn.Width(width);
+	rn.Height(height);
+	xamlContainer.Children().Append(rn);
 
-	xamlContainer.Children().Append(tb);
 	xamlContainer.UpdateLayout();
 	desktopSource.Content(xamlContainer);
 
