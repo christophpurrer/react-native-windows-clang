@@ -1,9 +1,9 @@
 namespace UWPApp
 {
 	[default_interface]
-	runtimeclass ReactNativeWinRT : Windows.UI.Xaml.Controls.UserControl
+	runtimeclass ReactNativeWinRT
 	{
 	  ReactNativeWinRT();
-      Windows.UI.Xaml.Controls.Grid ReactRootView{ get; };
+	  Windows.UI.Xaml.Controls.Grid ReactRootView{ get; };
 	}
 }

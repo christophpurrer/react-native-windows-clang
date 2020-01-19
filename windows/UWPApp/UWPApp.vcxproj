@@ -113,7 +113,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
     <ClInclude Include="ReactNativeWinRT.h">
-      <DependentUpon>ReactNativeWinRT.xaml</DependentUpon>
+      <DependentUpon>ReactNativeWinRT.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
   </ItemGroup>
@@ -121,9 +121,6 @@
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ReactNativeWinRT.xaml">
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -145,18 +142,14 @@
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="ReactNativeWinRT.cpp">
-      <DependentUpon>ReactNativeWinRT.xaml</DependentUpon>
-      <SubType>Code</SubType>
+      <DependentUpon>ReactNativeWinRT.idl</DependentUpon>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl">
       <DependentUpon>App.xaml</DependentUpon>
     </Midl>
-    <Midl Include="ReactNativeWinRT.idl">
-      <DependentUpon>ReactNativeWinRT.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Midl>
+    <Midl Include="ReactNativeWinRT.idl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dummy.exe">

@@ -1,8 +1,6 @@
 ﻿#include "pch.h"
 #include "ReactNativeWinRT.h"
-#if __has_include("ReactNativeWinRT.g.cpp")
 #include "ReactNativeWinRT.g.cpp"
-#endif
 
 using namespace winrt;
 using namespace Windows::UI::Xaml;
@@ -19,7 +17,6 @@ namespace winrt::UWPApp::implementation
 
 	ReactNativeWinRT::ReactNativeWinRT()
 	{
-		InitializeComponent();
 		InstanceSettings settings;
 
 #ifdef BUNDLE
@@ -35,11 +32,7 @@ namespace winrt::UWPApp::implementation
 
 		reactRootView_.Instance(instance);
 
-		const wchar_t* initialProps = L"{ "
-			L"\"one\":\"1\""
-			L", \"two\":\"2\""
-			L"}";
-
+		const wchar_t* initialProps = L"{}";
 		reactRootView_.InitialProps(winrt::hstring(initialProps));
 		reactRootView_.JsComponentName(JSCOMPONENTNAME);
 		reactRootView_.StartRender();
