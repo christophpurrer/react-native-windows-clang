@@ -30,7 +30,7 @@ yarn start
 ![Running react-native-windows inside a win32 window](doc/react-native-windows-win32.png)
 
 ## How this project was setup?
-This sneaky examples leverage a set of technologies
+This sneaky example leverages a set of technologies:
 - [Xaml Islands](https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/using-the-xaml-hosting-api) >> [Sample](https://github.com/marb2000/XamlIslands/tree/master/1903_Samples/CppWinRT_Win32_SimpleApp/Win32DesktopApp)
 - [react-native-windows as a Windows Runtime Component](https://techcommunity.microsoft.com/t5/windows-dev-appconsult/getting-started-with-react-native-for-windows/ba-p/912093) >> [C# Sample](https://github.com/microsoft/react-native-windows-samples/tree/master/samples/TodosFeed/TodosFeed/windows)
 - [Reg-Free WinRT](https://blogs.windows.com/windowsdeveloper/2019/04/30/enhancing-non-packaged-desktop-apps-using-windows-runtime-components/) >> [Sample](https://github.com/Microsoft/RegFree_WinRT/tree/master/Cpp)
