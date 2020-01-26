@@ -6,10 +6,10 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "metro": "0.57",
-    "metro-config": "0.57",
+    "metro": "0.58",
+    "metro-config": "0.58",
     "react": "16.12.0",
-    "react-native": "github:microsoft/react-native#v0.60.0-microsoft.40"    
+    "react-native": "github:microsoft/react-native#v0.60.0-microsoft.40"
   },
   "optionalDependencies": {
     "react-native-windows": "0.60.0-vnext.115"
