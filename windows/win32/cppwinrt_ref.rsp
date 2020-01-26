@@ -1,0 +1,5 @@
+-in "C:\Users\chpurrer\Documents\GitHub\react-native-windows-clang\windows\packages\Microsoft.Toolkit.Win32.UI.XamlApplication.6.0.0\lib\uap10.0\Microsoft.Toolkit.Win32.UI.XamlHost.winmd"
+-in "C:\Users\chpurrer\Documents\GitHub\react-native-windows-clang\windows\x64\Debug\UWPApp\UWPApp.winmd" -ref "C:\Program Files (x86)\Windows Kits\10\References\10.0.18362.0\Windows.Foundation.FoundationContract\3.0.0.0\Windows.Foundation.FoundationContract.winmd"
+-ref "C:\Program Files (x86)\Windows Kits\10\References\10.0.18362.0\Windows.Foundation.UniversalApiContract\8.0.0.0\Windows.Foundation.UniversalApiContract.winmd"
+-ref "C:\Program Files (x86)\Windows Kits\10\References\10.0.18362.0\Windows.Networking.Connectivity.WwanContract\2.0.0.0\Windows.Networking.Connectivity.WwanContract.winmd" 
+-out "Generated Files\."
