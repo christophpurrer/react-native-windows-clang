@@ -35,6 +35,7 @@ This sneaky example leverages a set of technologies:
 - [react-native-windows as a Windows Runtime Component](https://techcommunity.microsoft.com/t5/windows-dev-appconsult/getting-started-with-react-native-for-windows/ba-p/912093) >> [C# Sample](https://github.com/microsoft/react-native-windows-samples/tree/master/samples/TodosFeed/TodosFeed/windows)
 - [Reg-Free WinRT](https://blogs.windows.com/windowsdeveloper/2019/04/30/enhancing-non-packaged-desktop-apps-using-windows-runtime-components/) >> [Sample](https://github.com/Microsoft/RegFree_WinRT/tree/master/Cpp)
 - [UWP Store App exported as .DLL with dummy.exe trick](https://github.com/marb2000/XamlIslands/tree/master/1903_Samples/CppWinRT_Win32_SingleIsland) >> Study the entire [README.MD](https://github.com/marb2000/XamlIslands/blob/master/1903_Samples/CppWinRT_Win32_SingleIsland/ReadMe.md)
+- [Embed Manifest via command line](https://docs.microsoft.com/en-us/cpp/build/how-to-embed-a-manifest-inside-a-c-cpp-application?view=vs-2019) with [mt.exe](https://docs.microsoft.com/en-us/windows/win32/sbscs/mt-exe)
 - [VCRT Forwarding](https://www.nuget.org/packages/Microsoft.VCRTForwarders.140)
 
 See [WinRT documentation](https://docs.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/get-started) in case you are unfamiliar with it.
