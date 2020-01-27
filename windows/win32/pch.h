@@ -4,6 +4,10 @@
 #ifdef GetCurrentTime
 #undef GetCurrentTime
 #endif
+#if defined(__clang__)
+// TODO: Find __uuidof implementation for clang
+#define __uuidof(type) {0,0,0,{}}
+#endif
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Windows.System.h>
