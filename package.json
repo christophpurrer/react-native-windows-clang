@@ -12,7 +12,7 @@
     "react-native": "github:microsoft/react-native#v0.60.0-microsoft.40"
   },
   "optionalDependencies": {
-    "react-native-windows": "0.60.0-vnext.115"
+    "react-native-windows": "0.60.0-vnext.133"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
