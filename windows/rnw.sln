@@ -33,8 +33,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shared", "..\node_modules\r
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win32", "win32\win32.vcxproj", "{1E8730FA-EEFC-429D-B4D4-C3AF3CB05C77}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UWPApp", "UWPApp\UWPApp.vcxproj", "{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactUWP", "..\node_modules\react-native-windows\ReactUWP\ReactUWP.vcxproj", "{2D5D43D9-CFFC-4C40-B4CD-02EFB4E2742B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JavaScript", "JavaScript", "{7837A845-915B-462D-8572-B4C83D98DE1D}"
@@ -48,13 +46,13 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\node_modules\react-native-windows\JSI\Shared\JSI.Shared.vcxitems*{0cc28589-39e4-4288-b162-97b959f8b843}*SharedItemsImports = 9
+		..\node_modules\react-native-windows\Microsoft.ReactNative.Cxx\Microsoft.ReactNative.Cxx.vcxitems*{1e8730fa-eefc-429d-b4d4-c3af3cb05c77}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\Shared\Shared.vcxitems*{2049dbe9-8d13-42c9-ae4b-413ae38fffd0}*SharedItemsImports = 9
 		..\node_modules\react-native-windows\Chakra\Chakra.vcxitems*{2d5d43d9-cffc-4c40-b4cd-02efb4e2742b}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\Shared\Shared.vcxitems*{2d5d43d9-cffc-4c40-b4cd-02efb4e2742b}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\JSI\Shared\JSI.Shared.vcxitems*{a62d504a-16b8-41d2-9f19-e2e86019e5e4}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\Chakra\Chakra.vcxitems*{c38970c0-5fbf-4d69-90d8-cbac225ae895}*SharedItemsImports = 9
 		..\node_modules\react-native-windows\Microsoft.ReactNative.Cxx\Microsoft.ReactNative.Cxx.vcxitems*{da8b35b3-da00-4b02-bde6-6a397b3fd46b}*SharedItemsImports = 9
-		..\node_modules\react-native-windows\Microsoft.ReactNative.Cxx\Microsoft.ReactNative.Cxx.vcxitems*{efbe8c95-879c-43d0-be55-e7373d5dbf68}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\Chakra\Chakra.vcxitems*{f7d32bd0-2749-483e-9a0d-1635ef7e3136}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\JSI\Shared\JSI.Shared.vcxitems*{f7d32bd0-2749-483e-9a0d-1635ef7e3136}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\Shared\Shared.vcxitems*{f7d32bd0-2749-483e-9a0d-1635ef7e3136}*SharedItemsImports = 4
@@ -92,12 +90,6 @@ Global
 		{1E8730FA-EEFC-429D-B4D4-C3AF3CB05C77}.Debug|x64.Build.0 = Debug|x64
 		{1E8730FA-EEFC-429D-B4D4-C3AF3CB05C77}.Release|x64.ActiveCfg = Release|x64
 		{1E8730FA-EEFC-429D-B4D4-C3AF3CB05C77}.Release|x64.Build.0 = Release|x64
-		{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}.Debug|x64.ActiveCfg = Debug|x64
-		{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}.Debug|x64.Build.0 = Debug|x64
-		{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}.Debug|x64.Deploy.0 = Debug|x64
-		{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}.Release|x64.ActiveCfg = Release|x64
-		{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}.Release|x64.Build.0 = Release|x64
-		{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}.Release|x64.Deploy.0 = Release|x64
 		{2D5D43D9-CFFC-4C40-B4CD-02EFB4E2742B}.Debug|x64.ActiveCfg = Debug|x64
 		{2D5D43D9-CFFC-4C40-B4CD-02EFB4E2742B}.Debug|x64.Build.0 = Debug|x64
 		{2D5D43D9-CFFC-4C40-B4CD-02EFB4E2742B}.Release|x64.ActiveCfg = Release|x64

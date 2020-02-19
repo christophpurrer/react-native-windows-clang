@@ -1,5 +1,9 @@
 #pragma once
 
+#include <hstring.h>
+#include <restrictederrorinfo.h>
+#include <unknwn.h>
+
 #include <windows.h>
 #ifdef GetCurrentTime
 #undef GetCurrentTime
@@ -13,4 +17,4 @@
 #include <winrt/Windows.UI.Xaml.Media.h>
 #include <Windows.UI.Xaml.Hosting.DesktopWindowXamlSource.h>
 
-#include <winrt/UWPApp.h>
+#include <winrt/react.uwp.h>

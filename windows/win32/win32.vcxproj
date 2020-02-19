@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -82,17 +83,17 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <!-- Configure these for your main App project -->
+  <!-- Configure these for your main App project
   <PropertyGroup>
     <AppProjectName>UWPApp</AppProjectName>
   </PropertyGroup>
   <PropertyGroup>
     <AppIncludeDirectories>$(SolutionDir)\$(AppProjectName)\$(Platform)\$(Configuration)\;$(SolutionDir)\$(AppProjectName)\$(Platform)\$(Configuration)\Generated Files\;</AppIncludeDirectories>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <ItemGroup>
-    <ProjectReference Include="..\$(AppProjectName)\$(AppProjectName).vcxproj">
+    <!--<ProjectReference Include="..\$(AppProjectName)\$(AppProjectName).vcxproj">
       <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-    </ProjectReference>
+    </ProjectReference>-->
     <Manifest Include="win32.exe.manifest">
       <DeploymentContent>true</DeploymentContent>
     </Manifest>
@@ -111,13 +112,14 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -172,6 +174,17 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ImportGroup Label="Shared">
+    <Import Project="..\..\node_modules\react-native-windows\Microsoft.ReactNative.Cxx\Microsoft.ReactNative.Cxx.vcxitems" Label="Shared" />
+  </ImportGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\node_modules\react-native-windows\Microsoft.ReactNative\Microsoft.ReactNative.vcxproj">
+      <Project>{f7d32bd0-2749-483e-9a0d-1635ef7e3136}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\react-native-windows\ReactUWP\ReactUWP.vcxproj">
+      <Project>{2d5d43d9-cffc-4c40-b4cd-02efb4e2742b}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.200107.1\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.200107.1\build\native\Microsoft.Windows.CppWinRT.targets')" />
