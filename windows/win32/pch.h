@@ -13,4 +13,4 @@
 #include <winrt/Windows.UI.Xaml.Media.h>
 #include <Windows.UI.Xaml.Hosting.DesktopWindowXamlSource.h>
 
-#include <winrt/UWPApp.h>
+#include <winrt/Microsoft.ReactNative.h>

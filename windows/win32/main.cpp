@@ -1,8 +1,25 @@
 #include "pch.h"
+#include "NativeModules.h"
 
 using namespace winrt;
 using namespace Windows::UI::Composition;
 using namespace Windows::UI::Xaml::Hosting;
+using namespace Microsoft::ReactNative;
+
+#ifdef BUNDLE
+const wchar_t* JSFILENAME = L"index.windows";
+#else
+const wchar_t* JSFILENAME = L"index";
+#endif
+const wchar_t* JSCOMPONENTNAME = L"App";
+
+struct ReactPackageProvider : winrt::implements<ReactPackageProvider, IReactPackageProvider>
+{
+public:
+	void CreatePackage(IReactPackageBuilder const& packageBuilder) noexcept {
+		AddAttributedModules(packageBuilder);
+	}
+};
 
 static BOOL CALLBACK UpdateChildSizeProc(HWND childHwnd, LPARAM lParam) {
 	RECT rcClient;
@@ -73,13 +90,31 @@ struct NativeWindow {
 		xamlContainer.Background(Windows::UI::Xaml::Media::SolidColorBrush{
 			Windows::UI::Colors::LightGray() });
 
-		rn_ = UWPApp::ReactNativeWinRT{};
-		reactRootView_ = rn_.ReactRootView();
-		reactRootView_.VerticalAlignment(Windows::UI::Xaml::VerticalAlignment::Center);
-		reactRootView_.HorizontalAlignment(Windows::UI::Xaml::HorizontalAlignment::Center);
-		reactRootView_.Width(width);
-		reactRootView_.Height(height);
-		xamlContainer.Children().Append(reactRootView_);
+		reactNativeHost_ = Microsoft::ReactNative::ReactNativeHost{};
+		reactNativeHost_.JavaScriptBundleFile(JSFILENAME);
+		ReactInstanceSettings settings;
+#ifdef BUNDLE
+		settings.UseLiveReload(false);
+		settings.UseWebDebugger(false);
+		settings.EnableDeveloperMenu(false);
+#else
+		settings.UseLiveReload(true);
+		settings.UseWebDebugger(true);
+		settings.EnableDeveloperMenu(true);
+		reactNativeHost_.UseDeveloperSupport(true);
+#endif
+		settings.UseJsi(true);
+		reactNativeHost_.InstanceSettings(settings);
+		reactNativeHost_.PackageProviders(single_threaded_vector<IReactPackageProvider>());
+		reactNativeHost_.PackageProviders().Append(make<ReactPackageProvider>());
+		reactNativeHost_.MainComponentName(JSCOMPONENTNAME);
+
+		auto reactRootView = reactNativeHost_.GetOrCreateRootView(nullptr).as<Windows::UI::Xaml::Controls::Grid>();
+		reactRootView.VerticalAlignment(Windows::UI::Xaml::VerticalAlignment::Center);
+		reactRootView.HorizontalAlignment(Windows::UI::Xaml::HorizontalAlignment::Center);
+		reactRootView.Width(width);
+		reactRootView.Height(height);
+		xamlContainer.Children().Append(reactRootView);
 
 		xamlContainer.UpdateLayout();
 		desktopSource_.Content(xamlContainer);
@@ -107,8 +142,8 @@ struct NativeWindow {
 		}
 
 		// This works around a cpp/winrt bug with composable/aggregable types tracked by Microsoft via 22116519
-		rn_.as<::IUnknown>()->Release();
-		reactRootView_.as<::IUnknown>()->Release();
+		reactNativeHost_.GetOrCreateRootView(nullptr).as<::IUnknown>()->Release();
+		reactNativeHost_.as<::IUnknown>()->Release();
 
 		// Close window
 		DestroyWindow(hWnd_);
@@ -120,8 +155,7 @@ private:
 	HWND hWndXamlIsland_ = nullptr;
 	WindowsXamlManager windowsXamlManager_ = nullptr;
 	DesktopWindowXamlSource desktopSource_ = nullptr;
-	Windows::UI::Xaml::Controls::Grid reactRootView_ = nullptr;
-	UWPApp::ReactNativeWinRT rn_ = nullptr;
+	Microsoft::ReactNative::ReactNativeHost reactNativeHost_ = nullptr;
 	bool isRunning_ = false;
 };
 
