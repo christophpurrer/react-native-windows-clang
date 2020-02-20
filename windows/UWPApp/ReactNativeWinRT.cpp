@@ -1,44 +1,53 @@
 ﻿#include "pch.h"
 #include "ReactNativeWinRT.h"
 #include "ReactNativeWinRT.g.cpp"
+#include "NativeModules.h"
 
 using namespace winrt;
 using namespace Windows::UI::Xaml;
-using namespace react::uwp;
+using namespace Microsoft::ReactNative;
 
 namespace winrt::UWPApp::implementation
 {
-#ifdef BUNDLE  
+#ifdef BUNDLE
 	const wchar_t* JSFILENAME = L"index.windows";
-#else  
+#else
 	const wchar_t* JSFILENAME = L"index";
 #endif
 	const wchar_t* JSCOMPONENTNAME = L"App";
 
+	struct ReactPackageProvider : winrt::implements<ReactPackageProvider, IReactPackageProvider>
+	{
+	public:
+		void CreatePackage(IReactPackageBuilder const& packageBuilder) noexcept {
+			AddAttributedModules(packageBuilder);
+		}
+	};
+
 	ReactNativeWinRT::ReactNativeWinRT()
 	{
-		InstanceSettings settings;
-
+		ReactInstanceSettings settings;
 #ifdef BUNDLE
-		settings.UseLiveReload = false;
-		settings.UseWebDebugger = false;
-#else    
-		settings.UseLiveReload = true;
-		settings.UseWebDebugger = true;
+		reactNativeHost.JavaScriptBundleFile(JSFILENAME);
+		settings.UseLiveReload(false);
+		settings.UseWebDebugger(false);
+		settings.EnableDeveloperMenu(false);
+#else
+		reactNativeHost_.JavaScriptMainModuleName(JSFILENAME);
+		settings.UseLiveReload(true);
+		settings.UseWebDebugger(true);
+		settings.EnableDeveloperMenu(true);
+		reactNativeHost_.UseDeveloperSupport(true);
 #endif
+		settings.UseJsi(true);
 
-		auto instance = Instance::Create(winrt::hstring(JSFILENAME));
-		instance.Start(settings);
-
-		reactRootView_.Instance(instance);
-
-		const wchar_t* initialProps = L"{}";
-		reactRootView_.InitialProps(winrt::hstring(initialProps));
-		reactRootView_.JsComponentName(JSCOMPONENTNAME);
-		reactRootView_.StartRender();
+		reactNativeHost_.InstanceSettings(settings);
+		reactNativeHost_.PackageProviders(single_threaded_vector<IReactPackageProvider>());
+		reactNativeHost_.PackageProviders().Append(make<ReactPackageProvider>());
+		reactNativeHost_.MainComponentName(JSCOMPONENTNAME);
 	}
 
 	Windows::UI::Xaml::Controls::Grid ReactNativeWinRT::ReactRootView() {
-		return reactRootView_.as<Windows::UI::Xaml::Controls::Grid>();
+		return reactNativeHost_.GetOrCreateRootView(nullptr).as<Windows::UI::Xaml::Controls::Grid>();
 	}
 }

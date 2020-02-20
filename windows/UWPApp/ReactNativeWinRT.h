@@ -10,7 +10,7 @@ namespace winrt::UWPApp::implementation
 		ReactNativeWinRT();
 		Windows::UI::Xaml::Controls::Grid ReactRootView();
 	private:
-		react::uwp::ReactControl reactRootView_;
+		Microsoft::ReactNative::ReactNativeHost reactNativeHost_;
 	};
 }
 

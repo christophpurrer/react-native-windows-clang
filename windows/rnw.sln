@@ -35,8 +35,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win32", "win32\win32.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UWPApp", "UWPApp\UWPApp.vcxproj", "{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactUWP", "..\node_modules\react-native-windows\ReactUWP\ReactUWP.vcxproj", "{2D5D43D9-CFFC-4C40-B4CD-02EFB4E2742B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JavaScript", "JavaScript", "{7837A845-915B-462D-8572-B4C83D98DE1D}"
 	ProjectSection(SolutionItems) = preProject
 		..\App.js = ..\App.js
@@ -49,8 +47,6 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\node_modules\react-native-windows\JSI\Shared\JSI.Shared.vcxitems*{0cc28589-39e4-4288-b162-97b959f8b843}*SharedItemsImports = 9
 		..\node_modules\react-native-windows\Shared\Shared.vcxitems*{2049dbe9-8d13-42c9-ae4b-413ae38fffd0}*SharedItemsImports = 9
-		..\node_modules\react-native-windows\Chakra\Chakra.vcxitems*{2d5d43d9-cffc-4c40-b4cd-02efb4e2742b}*SharedItemsImports = 4
-		..\node_modules\react-native-windows\Shared\Shared.vcxitems*{2d5d43d9-cffc-4c40-b4cd-02efb4e2742b}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\JSI\Shared\JSI.Shared.vcxitems*{a62d504a-16b8-41d2-9f19-e2e86019e5e4}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\Chakra\Chakra.vcxitems*{c38970c0-5fbf-4d69-90d8-cbac225ae895}*SharedItemsImports = 9
 		..\node_modules\react-native-windows\Microsoft.ReactNative.Cxx\Microsoft.ReactNative.Cxx.vcxitems*{da8b35b3-da00-4b02-bde6-6a397b3fd46b}*SharedItemsImports = 9
@@ -98,10 +94,6 @@ Global
 		{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}.Release|x64.ActiveCfg = Release|x64
 		{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}.Release|x64.Build.0 = Release|x64
 		{EFBE8C95-879C-43D0-BE55-E7373D5DBF68}.Release|x64.Deploy.0 = Release|x64
-		{2D5D43D9-CFFC-4C40-B4CD-02EFB4E2742B}.Debug|x64.ActiveCfg = Debug|x64
-		{2D5D43D9-CFFC-4C40-B4CD-02EFB4E2742B}.Debug|x64.Build.0 = Debug|x64
-		{2D5D43D9-CFFC-4C40-B4CD-02EFB4E2742B}.Release|x64.ActiveCfg = Release|x64
-		{2D5D43D9-CFFC-4C40-B4CD-02EFB4E2742B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,7 +109,6 @@ Global
 		{DA8B35B3-DA00-4B02-BDE6-6A397B3FD46B} = {5EA20F54-880A-49F3-99FA-4B3FE54E8AB1}
 		{FCA38F3C-7C73-4C47-BE4E-32F77FA8538D} = {5EA20F54-880A-49F3-99FA-4B3FE54E8AB1}
 		{2049DBE9-8D13-42C9-AE4B-413AE38FFFD0} = {5EA20F54-880A-49F3-99FA-4B3FE54E8AB1}
-		{2D5D43D9-CFFC-4C40-B4CD-02EFB4E2742B} = {5EA20F54-880A-49F3-99FA-4B3FE54E8AB1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D43FAD39-F619-437D-BB40-04A3982ACB6A}
