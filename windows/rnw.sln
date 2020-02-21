@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		createResources.bat = createResources.bat
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win32main", "win32main\win32main.vcxproj", "{D31A222F-9EA4-4AAC-9958-F00EE68C26CA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\node_modules\react-native-windows\JSI\Shared\JSI.Shared.vcxitems*{0cc28589-39e4-4288-b162-97b959f8b843}*SharedItemsImports = 9
@@ -77,6 +79,8 @@ Global
 		{FCA38F3C-7C73-4C47-BE4E-32F77FA8538D}.Debug|x64.Build.0 = Debug|x64
 		{1E8730FA-EEFC-429D-B4D4-C3AF3CB05C77}.Debug|x64.ActiveCfg = Debug|x64
 		{1E8730FA-EEFC-429D-B4D4-C3AF3CB05C77}.Debug|x64.Build.0 = Debug|x64
+		{D31A222F-9EA4-4AAC-9958-F00EE68C26CA}.Debug|x64.ActiveCfg = Debug|x64
+		{D31A222F-9EA4-4AAC-9958-F00EE68C26CA}.Debug|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

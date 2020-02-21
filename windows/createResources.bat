@@ -9,6 +9,6 @@ if not exist resources mkdir resources
 :: Create priconfig
 MakePri.exe createconfig /cf priconfig.xml /dq en-US /pv 10.0.0 /o
 :: Create resources.pri
-MakePri.exe new /pr resources /cf priconfig.xml /in win32 /of x64/Debug/resources.pri /o
+MakePri.exe new /pr resources /cf priconfig.xml /in electron /of x64/Debug/resources.pri /o
 
 cd %CURRENT_PATH%

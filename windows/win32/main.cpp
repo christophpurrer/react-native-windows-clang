@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "NativeModules.h"
+#include "main.h"
 
 using namespace winrt;
 using namespace Windows::UI::Composition;
@@ -7,7 +8,7 @@ using namespace Windows::UI::Xaml::Hosting;
 using namespace Microsoft::ReactNative;
 
 #ifdef BUNDLE
-const wchar_t* JSFILENAME = L"index.windows";
+const wchar_t* JSFILENAME = L"index.bundle";
 #else
 const wchar_t* JSFILENAME = L"index";
 #endif
@@ -50,13 +51,13 @@ static LRESULT CALLBACK WindowProc(HWND hWnd, UINT messageCode, WPARAM wParam,
 
 struct NativeWindow {
 	NativeWindow(HINSTANCE hInstance) noexcept {
-		// The main window class name.
-		const wchar_t szWindowClass[] = L"WinDesk";
+		// register the windows class with unique className to allow multiWindow support
+		std::wstring windowClassName = L"Messenger" + std::to_wstring(windowCounter++);
 		WNDCLASSEX windowClass = {};
 		windowClass.cbSize = sizeof(WNDCLASSEX);
 		windowClass.lpfnWndProc = WindowProc;
 		windowClass.hInstance = hInstance;
-		windowClass.lpszClassName = szWindowClass;
+		windowClass.lpszClassName = windowClassName.c_str();
 		windowClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 		windowClass.hIconSm = LoadIcon(windowClass.hInstance, IDI_APPLICATION);
 
@@ -68,7 +69,7 @@ struct NativeWindow {
 		auto width = 720;
 		auto height = 1280;
 		hWnd_ =
-			CreateWindow(szWindowClass, L"Win32 Desktop App",
+			CreateWindow(windowClassName.c_str(), L"Win32 Desktop App",
 				WS_OVERLAPPEDWINDOW | WS_VISIBLE, CW_USEDEFAULT,
 				CW_USEDEFAULT, width, height, NULL, NULL, hInstance, NULL);
 		if (hWnd_ == NULL) {
@@ -124,7 +125,11 @@ struct NativeWindow {
 		UpdateWindow(hWnd_);
 	}
 
-	~NativeWindow() = default;
+	~NativeWindow() noexcept {
+		// This works around a cpp/winrt bug with composable/aggregable types tracked by Microsoft via 22116519
+		reactNativeHost_.GetOrCreateRootView(nullptr).as<::IUnknown>()->Release();
+	}
+
 	NativeWindow(const NativeWindow&) = delete;
 	NativeWindow& operator=(const NativeWindow&) = delete;
 
@@ -141,15 +146,12 @@ struct NativeWindow {
 			DispatchMessage(&msg);
 		}
 
-		// This works around a cpp/winrt bug with composable/aggregable types tracked by Microsoft via 22116519
-		reactNativeHost_.GetOrCreateRootView(nullptr).as<::IUnknown>()->Release();
-		reactNativeHost_.as<::IUnknown>()->Release();
-
 		// Close window
 		DestroyWindow(hWnd_);
 	}
 
 private:
+	static std::atomic<int> windowCounter;
 	HWND hWnd_ = nullptr;
 	// This Hwnd will be the window handler for the Xaml Island: A child window that contains Xaml.
 	HWND hWndXamlIsland_ = nullptr;
@@ -159,9 +161,9 @@ private:
 	bool isRunning_ = false;
 };
 
-int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
-	_In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
-	NativeWindow nativeWindow{ hInstance };
+std::atomic<int> NativeWindow::windowCounter{ 0 };
+
+void openNativeWindow() {
+	NativeWindow nativeWindow{ (HINSTANCE)GetModuleHandle(NULL) };
 	nativeWindow.start();
-	return 0;
 }
