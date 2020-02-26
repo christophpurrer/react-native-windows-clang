@@ -146,6 +146,11 @@
   <ItemGroup>
     <Manifest Include="..\win32\win32.exe.manifest" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\win32\win32.vcxproj">
+      <Project>{1e8730fa-eefc-429d-b4d4-c3af3cb05c77}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
