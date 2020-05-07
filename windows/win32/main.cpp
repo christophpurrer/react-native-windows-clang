@@ -48,6 +48,44 @@ static LRESULT CALLBACK WindowProc(HWND hWnd, UINT messageCode, WPARAM wParam,
 	return 0;
 }
 
+struct SimpleRedBoxHandler : winrt::implements<SimpleRedBoxHandler, winrt::Microsoft::ReactNative::IRedBoxHandler> {
+	SimpleRedBoxHandler() noexcept {}
+
+	void ShowNewError(
+		winrt::Microsoft::ReactNative::IRedBoxErrorInfo const& info,
+		winrt::Microsoft::ReactNative::RedBoxErrorType type) noexcept {
+		OutputDebugStringA("----- Begin RedBox -----\n");
+
+		switch (type) {
+		case winrt::Microsoft::ReactNative::RedBoxErrorType::JavaScriptFatal:
+			OutputDebugStringA("Fatal Error: ");
+			break;
+		case winrt::Microsoft::ReactNative::RedBoxErrorType::JavaScriptSoft:
+			OutputDebugStringA("JavaScript Error: ");
+			break;
+		case winrt::Microsoft::ReactNative::RedBoxErrorType::Native:
+			OutputDebugStringA("Native Error: ");
+			break;
+		}
+
+		OutputDebugString(info.Message().c_str());
+		OutputDebugStringA("\n-----  End RedBox  -----\n");
+	}
+
+	bool IsDevSupportEnabled() noexcept {
+		return true;
+	}
+
+	void UpdateError(winrt::Microsoft::ReactNative::IRedBoxErrorInfo const& info) noexcept {
+		// noop
+	}
+
+	void DismissRedBox() noexcept {
+		// noop
+	}
+};
+
+
 struct NativeWindow {
 	NativeWindow(HINSTANCE hInstance) noexcept {
 		// The main window class name.
@@ -86,38 +124,37 @@ struct NativeWindow {
 		SetWindowPos(hWndXamlIsland_, 0, 0, 0, width, height, SWP_SHOWWINDOW);
 
 		// Creating the Xaml content
-		Windows::UI::Xaml::Controls::StackPanel xamlContainer;
-		xamlContainer.Background(Windows::UI::Xaml::Media::SolidColorBrush{
-			Windows::UI::Colors::LightGray() });
-
-		reactNativeHost_ = Microsoft::ReactNative::ReactNativeHost{};
-		reactNativeHost_.JavaScriptBundleFile(JSFILENAME);
 		ReactInstanceSettings settings;
+		settings.MainComponentName(JSCOMPONENTNAME);
+		settings.JavaScriptBundleFile(JSFILENAME);
+		settings.UseDirectDebugger(false);
+		settings.DebuggerBreakOnNextLine(false);
+
 #ifdef BUNDLE
-		settings.UseLiveReload(false);
+		settings.UseFastRefresh(false);
 		settings.UseWebDebugger(false);
-		settings.EnableDeveloperMenu(false);
 #else
-		settings.UseLiveReload(true);
+		settings.UseFastRefresh(true);
 		settings.UseWebDebugger(true);
-		settings.EnableDeveloperMenu(true);
-		reactNativeHost_.UseDeveloperSupport(true);
 #endif
-		settings.UseJsi(true);
+		settings.RedBoxHandler(winrt::make<SimpleRedBoxHandler>());
+		settings.Properties().Set(
+			winrt::Microsoft::ReactNative::ReactDispatcherHelper::UIDispatcherProperty(),
+			winrt::Microsoft::ReactNative::ReactDispatcherHelper::UIThreadDispatcher());
+
+		reactNativeHost_ = Microsoft::ReactNative::ReactNativeHost();
 		reactNativeHost_.InstanceSettings(settings);
 		reactNativeHost_.PackageProviders(single_threaded_vector<IReactPackageProvider>());
 		reactNativeHost_.PackageProviders().Append(make<ReactPackageProvider>());
-		reactNativeHost_.MainComponentName(JSCOMPONENTNAME);
+		reactNativeHost_.ReloadInstance();
 
-		auto reactRootView = reactNativeHost_.GetOrCreateRootView(nullptr).as<Windows::UI::Xaml::Controls::Grid>();
-		reactRootView.VerticalAlignment(Windows::UI::Xaml::VerticalAlignment::Center);
-		reactRootView.HorizontalAlignment(Windows::UI::Xaml::HorizontalAlignment::Center);
-		reactRootView.Width(width);
-		reactRootView.Height(height);
-		xamlContainer.Children().Append(reactRootView);
-
-		xamlContainer.UpdateLayout();
-		desktopSource_.Content(xamlContainer);
+		reactRootView_ = Microsoft::ReactNative::ReactRootView();
+		reactRootView_.ComponentName(reactNativeHost_.InstanceSettings().MainComponentName());
+		reactRootView_.ReactNativeHost(reactNativeHost_);
+		reactRootView_.VerticalAlignment(Windows::UI::Xaml::VerticalAlignment::Stretch);
+		reactRootView_.HorizontalAlignment(Windows::UI::Xaml::HorizontalAlignment::Stretch);
+		reactRootView_.UpdateLayout();
+		desktopSource_.Content(reactRootView_);
 		// End XAML Island section
 
 		ShowWindow(hWnd_, SW_SHOW);
@@ -142,8 +179,7 @@ struct NativeWindow {
 		}
 
 		// This works around a cpp/winrt bug with composable/aggregable types tracked by Microsoft via 22116519
-		reactNativeHost_.GetOrCreateRootView(nullptr).as<::IUnknown>()->Release();
-		reactNativeHost_.as<::IUnknown>()->Release();
+		desktopSource_.Close();
 
 		// Close window
 		DestroyWindow(hWnd_);
@@ -156,6 +192,7 @@ private:
 	WindowsXamlManager windowsXamlManager_ = nullptr;
 	DesktopWindowXamlSource desktopSource_ = nullptr;
 	Microsoft::ReactNative::ReactNativeHost reactNativeHost_ = nullptr;
+	Microsoft::ReactNative::ReactRootView reactRootView_ = nullptr;
 	bool isRunning_ = false;
 };
 
