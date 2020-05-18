@@ -1,0 +1,16 @@
+627,633c627,633
+<   m_backRequestedRevoker = winrt::Windows::UI::Core::SystemNavigationManager::GetForCurrentView().BackRequested(
+<       winrt::auto_revoke,
+<       [weakThis](winrt::IInspectable const & /*sender*/, winrt::BackRequestedEventArgs const &args) {
+<         if (auto self = weakThis.lock()) {
+<           args.Handled(self->OnBackRequested());
+<         }
+<       });
+---
+>   // m_backRequestedRevoker = winrt::Windows::UI::Core::SystemNavigationManager::GetForCurrentView().BackRequested(
+>       // winrt::auto_revoke,
+>       // [weakThis](winrt::IInspectable const & /*sender*/, winrt::BackRequestedEventArgs const &args) {
+>         // if (auto self = weakThis.lock()) {
+>           // args.Handled(self->OnBackRequested());
+>         // }
+>       // });
